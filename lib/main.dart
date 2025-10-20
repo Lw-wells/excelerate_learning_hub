@@ -1,18 +1,85 @@
 import 'package:flutter/material.dart';
 import 'screens/sign_in_screen.dart';
+import 'screens/home_screen.dart';
+import 'screens/program_listing_screen.dart';
+import 'screens/program_details_screen.dart';
+
+// import 'screens/program_listing_screen.dart' show Program;
 
 void main() {
-  runApp(const ExcelerateApp());
+  runApp(const MyApp());
 }
 
-class ExcelerateApp extends StatelessWidget {
-  const ExcelerateApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Excelerate Programs',
       debugShowCheckedModeBanner: false,
-      home: SignInScreen(),
+      theme: ThemeData(
+        primarySwatch: Colors.grey,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          foregroundColor: Colors.black,
+          titleTextStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+      ),
+
+      // ✅ Start from Sign In Screen
+      initialRoute: '/signIn',
+
+      routes: {
+        '/signIn': (context) => const SignInScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/programListing': (context) => const ProgramListingScreen(),
+      },
+
+      // ✅ Handle dynamic route for Program Details (with data)
+      onGenerateRoute: (settings) {
+        if (settings.name == '/programDetails') {
+          final program = settings.arguments as Program;
+          return MaterialPageRoute(
+            builder: (context) => ProgramDetailsScreen(
+              program: program,
+              title: '',
+              date: '',
+              category: '',
+              description: '',
+            ),
+          );
+        }
+        return null;
+      },
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+// import 'screens/home_screen.dart';
+// import 'screens/program_listing_screen.dart';
+
+// void main() {
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Excelerate App',
+//       theme: ThemeData(primarySwatch: Colors.blue),
+//       home: const HomeScreen(),
+//       routes: {'/programs': (context) => ProgramListingScreen()},
+//     );
+//   }
+// }

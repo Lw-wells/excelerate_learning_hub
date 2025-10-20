@@ -89,14 +89,18 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: ElevatedButton(
+                  child: // inside SignInScreen: where the Continue button is defined
+                  ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      // Replace current screen so user can't go back to sign-in
+                      Navigator.pushReplacementNamed(context, '/home');
+                    },
                     child: Text(
                       "Continue",
                       style: GoogleFonts.inter(
