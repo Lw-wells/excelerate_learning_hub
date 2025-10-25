@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       // ✅ Handle dynamic route for Program Details (with data)
       onGenerateRoute: (settings) {
         if (settings.name == '/programDetails') {
-          final program = settings.arguments as Program;
+          final dynamic program = settings.arguments;
           return MaterialPageRoute(
             builder: (context) => ProgramDetailsScreen(
               program: program,

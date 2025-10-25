@@ -16,13 +16,19 @@ class SignInScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Profile Avatar Placeholder
-                Container(
-                  width: 90,
-                  height: 90,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.black26,
-                  ),
+                // Container(
+                //   width: 90,
+                //   height: 90,
+                //   decoration: const BoxDecoration(
+                //     shape: BoxShape.circle,
+                //     color: Colors.black26,
+                //   ),
+                // ),
+
+                // ✅ Logo Image
+                Image.asset(
+                  'assets/excelerate.jpeg', // your image path
+                  height: 100, // adjust size as needed
                 ),
                 const SizedBox(height: 24),
 

@@ -1,53 +1,55 @@
+import 'package:excelerate_app/models/programs.dart';
 import 'package:flutter/material.dart';
 import 'program_details_screen.dart';
 
 // --- Data Model for a Program ---
-class Program {
-  final String title;
-  final String description;
-  final int durationWeeks;
+// class Program {
+//   final String title;
+//   final String description;
+//   final int durationWeeks;
+//   final String image;
 
-  const Program({
-    required this.title,
-    required this.description,
-    required this.durationWeeks,
-    required String imageUrl,
-  });
-}
+//   const Program({
+//     required this.title,
+//     required this.description,
+//     required this.durationWeeks,
+//     required this.image,
+//   });
+// }
 
 // --- Sample Data ---
-const List<Program> mockPrograms = [
+final List<Program> mockPrograms = [
   Program(
     title: 'Advanced Javascript Course',
     description:
-        'Master modern Javascript concepts and frameworks for web development',
+        'Master modern Javascript concepts and frameworks for web development.',
     durationWeeks: 8,
-    imageUrl:
-        'https://www.istockphoto.com/photo/javascript-inscription-against-laptop-and-code-background-learn-javascript-gm1284271878-381458620?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_bottom&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fjavascricpt&utm_term=javascricpt%3A%3Alayout-below-fold-units-2%3Aexperiment',
+    image: 'assets/javascript.jpg',
+    category: '',
   ),
   Program(
     title: 'UX Design Principles',
     description:
-        'Learn user experience design fundamentals and create intuitive interfaces',
+        'Learn user experience design fundamentals and create intuitive interfaces.',
     durationWeeks: 6,
-    imageUrl:
-        'https://plus.unsplash.com/premium_photo-1733306548826-95daff988ae6?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dXglMjB1aSUyMGRlc2lnbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900',
+    image: 'assets/uxui.jpg',
+    category: '',
   ),
   Program(
     title: 'Project Management Certification',
     description:
-        'Comprehensive project management training with industry certification',
+        'Comprehensive project management training with industry certification.',
     durationWeeks: 12,
-    imageUrl:
-        'https://unsplash.com/photos/person-writing-on-white-paper-KxVlKiqQObU',
+    image: 'assets/project.jpg',
+    category: '',
   ),
   Program(
     title: 'Mobile App Development',
     description:
-        'Build native and cross-platform mobile applications from scratch',
+        'Build native and cross-platform mobile applications from scratch.',
     durationWeeks: 10,
-    imageUrl:
-        'https://unsplash.com/photos/world-metaverse-on-smartphone-limitless-virtual-reality-technology-for-future-digital-devices-3d-render-illustration-Y-Xu1Z2OG_I',
+    image: 'assets/mobile.jpg',
+    category: '', // ✅ fixed typo here
   ),
 ];
 
@@ -109,36 +111,36 @@ class ProgramListingScreen extends StatelessWidget {
       ),
 
       // --- Bottom Navigation Bar ---
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: 1,
-        selectedItemColor: Colors.brown[800],
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore_outlined),
-            label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   type: BottomNavigationBarType.fixed,
+      //   showSelectedLabels: false,
+      //   showUnselectedLabels: false,
+      //   currentIndex: 1,
+      //   selectedItemColor: Colors.brown[800],
+      //   unselectedItemColor: Colors.grey,
+      // //   items: const [
+      // //     BottomNavigationBarItem(
+      // //       icon: Icon(Icons.home_outlined),
+      // //       label: 'Home',
+      // //     ),
+      // //     BottomNavigationBarItem(
+      // //       icon: Icon(Icons.explore_outlined),
+      // //       label: 'Explore',
+      // //     ),
+      // //     BottomNavigationBarItem(
+      // //       icon: Icon(Icons.shopping_cart_outlined),
+      // //       label: 'Cart',
+      // //     ),
+      // //     BottomNavigationBarItem(
+      // //       icon: Icon(Icons.notifications_outlined),
+      // //       label: 'Notifications',
+      // //     ),
+      // //     BottomNavigationBarItem(
+      // //       icon: Icon(Icons.person_outlined),
+      // //       label: 'Profile',
+      // //     ),
+      // //   ],
+      // // ),
     );
   }
 }
@@ -158,74 +160,326 @@ class ProgramCard extends StatelessWidget {
         side: const BorderSide(color: Color(0xFFE0E0E0), width: 1),
       ),
       elevation: 0,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            // --- Title ---
-            Text(
-              program.title,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          // --- Program Image ---
+          Image.asset(
+            program.image,
+            height: 180,
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
 
-            // --- Description ---
-            Text(
-              program.description,
-              style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-            ),
-            const SizedBox(height: 12),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // --- Duration ---
+                // --- Title ---
                 Text(
-                  '${program.durationWeeks} weeks',
+                  program.title,
                   style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+                const SizedBox(height: 8),
 
-                // --- View Details Button ---
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => ProgramDetailsScreen(
-                          program: program,
-                          title: '',
-                          date: '',
-                          category: '',
-                          description: '',
+                // --- Description ---
+                Text(
+                  program.description,
+                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                ),
+                const SizedBox(height: 12),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    // --- Duration ---
+                    Text(
+                      '${program.durationWeeks} weeks',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+
+                    // --- View Details Button ---
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProgramDetailsScreen(
+                              program: program,
+                              title: '',
+                              date: '',
+                              category: '',
+                              description: '',
+                            ),
+                          ),
+                        );
+                      },
+
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black87,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black87,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
+                      child: const Text('View Details'),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  child: const Text('View Details'),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+
+
+
+
+//OLD CODE
+// import 'package:flutter/material.dart';
+// import 'program_details_screen.dart';
+
+// // --- Data Model for a Program ---
+// class Program {
+//   final String title;
+//   final String description;
+//   final int durationWeeks;
+
+//   const Program({
+//     required this.title,
+//     required this.description,
+//     required this.durationWeeks,
+//     required String image,
+//   });
+// }
+
+// // --- Sample Data ---
+// const List<Program> mockPrograms = [
+//   Program(
+//     title: 'Advanced Javascript Course',
+//     description:
+//         'Master modern Javascript concepts and frameworks for web development',
+//     durationWeeks: 8,
+//     image: 'assets/javascript.jpg',
+//   ),
+//   Program(
+//     title: 'UX Design Principles',
+//     description:
+//         'Learn user experience design fundamentals and create intuitive interfaces',
+//     durationWeeks: 6,
+//     image: 'assets/uxui.jpg',
+//   ),
+//   Program(
+//     title: 'Project Management Certification',
+//     description:
+//         'Comprehensive project management training with industry certification',
+//     durationWeeks: 12,
+//     image: 'assets/project.jpg',
+//   ),
+//   Program(
+//     title: 'Mobile App Development',
+//     description:
+//         'Build native and cross-platform mobile applications from scratch',
+//     durationWeeks: 10,
+//     image: 'assests/mobile.jpg',
+//   ),
+// ];
+
+// // --- Main Program Listing Screen ---
+// class ProgramListingScreen extends StatelessWidget {
+//   const ProgramListingScreen({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.grey[100],
+//       appBar: AppBar(
+//         title: const Text(
+//           'All Programs',
+//           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+//         ),
+//         backgroundColor: Colors.white,
+//         elevation: 1,
+//         foregroundColor: Colors.black,
+//       ),
+
+//       body: Padding(
+//         padding: const EdgeInsets.symmetric(horizontal: 16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: <Widget>[
+//             const SizedBox(height: 12),
+
+//             // --- Search Bar ---
+//             const Padding(
+//               padding: EdgeInsets.only(bottom: 16.0),
+//               child: TextField(
+//                 decoration: InputDecoration(
+//                   hintText: 'Search programs...',
+//                   prefixIcon: Icon(Icons.search),
+//                   border: OutlineInputBorder(
+//                     borderRadius: BorderRadius.all(Radius.circular(10.0)),
+//                     borderSide: BorderSide.none,
+//                   ),
+//                   filled: true,
+//                   fillColor: Color(0xFFEFEFEF),
+//                   contentPadding: EdgeInsets.symmetric(vertical: 0),
+//                 ),
+//               ),
+//             ),
+
+//             // --- Program List ---
+//             Expanded(
+//               child: ListView.builder(
+//                 padding: EdgeInsets.zero,
+//                 itemCount: mockPrograms.length,
+//                 itemBuilder: (context, index) {
+//                   return ProgramCard(program: mockPrograms[index]);
+//                 },
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+
+//       // --- Bottom Navigation Bar ---
+//       bottomNavigationBar: BottomNavigationBar(
+//         type: BottomNavigationBarType.fixed,
+//         showSelectedLabels: false,
+//         showUnselectedLabels: false,
+//         currentIndex: 1,
+//         selectedItemColor: Colors.brown[800],
+//         unselectedItemColor: Colors.grey,
+//         items: const [
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.home_outlined),
+//             label: 'Home',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.explore_outlined),
+//             label: 'Explore',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.shopping_cart_outlined),
+//             label: 'Cart',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.notifications_outlined),
+//             label: 'Notifications',
+//           ),
+//           BottomNavigationBarItem(
+//             icon: Icon(Icons.person_outlined),
+//             label: 'Profile',
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+// // --- Program Card Widget ---
+// class ProgramCard extends StatelessWidget {
+//   final Program program;
+
+//   const ProgramCard({super.key, required this.program});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card(
+//       margin: const EdgeInsets.only(bottom: 16.0),
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.circular(10.0),
+//         side: const BorderSide(color: Color(0xFFE0E0E0), width: 1),
+//       ),
+//       elevation: 0,
+//       child: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: <Widget>[
+//             // --- Title ---
+//             Text(
+//               program.title,
+//               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//             ),
+//             const SizedBox(height: 8),
+
+//             // --- Description ---
+//             Text(
+//               program.description,
+//               style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+//             ),
+//             const SizedBox(height: 12),
+
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: <Widget>[
+//                 // --- Duration ---
+//                 Text(
+//                   '${program.durationWeeks} weeks',
+//                   style: const TextStyle(
+//                     fontSize: 16,
+//                     fontWeight: FontWeight.w500,
+//                   ),
+//                 ),
+
+//                 // --- View Details Button ---
+//                 ElevatedButton(
+//                   onPressed: () {
+//                     Navigator.push(
+//                       context,
+//                       MaterialPageRoute(
+//                         builder: (_) => ProgramDetailsScreen(
+//                           program: program,
+//                           title: '',
+//                           date: '',
+//                           category: '',
+//                           description: '',
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                   style: ElevatedButton.styleFrom(
+//                     backgroundColor: Colors.black87,
+//                     foregroundColor: Colors.white,
+//                     padding: const EdgeInsets.symmetric(
+//                       horizontal: 20,
+//                       vertical: 10,
+//                     ),
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(8.0),
+//                     ),
+//                   ),
+//                   child: const Text('View Details'),
+//                 ),
+//               ],
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+
+
+
+
 
 // import 'package:flutter/material.dart';
 // import '../models/programs.dart';
