@@ -4,6 +4,7 @@ import 'screens/home_screen.dart';
 import 'screens/program_listing_screen.dart';
 import 'screens/program_details_screen.dart';
 import 'services/program_service.dart';
+import 'screens/splash_screen.dart';
 
 void main() async {
   // ✅ Ensure Flutter is fully initialized before loading assets
@@ -40,9 +41,11 @@ class MyApp extends StatelessWidget {
       ),
 
       // ✅ Start from Sign In Screen
-      initialRoute: '/signIn',
+      initialRoute: '/splash',
 
       routes: {
+        '/splash': (context) => const SplashScreen(),
+
         '/signIn': (context) => const SignInScreen(),
         '/home': (context) => const HomeScreen(),
         '/programListing': (context) => const ProgramListingScreen(),
