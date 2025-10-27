@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "Mobile App Development with Flutter",
+    "date": "2025-10-15",
+    "category": "Flutter",
+    "description": "A hands-on program to master Dart and Flutter for cross-platform mobile app development.",
+    "image": "assets/mobile.jpg",
+    "durationWeeks": "8"
+  },
+  {
+    "id": 2,
+    "title": "Full Stack Web Development (MERN)",
+    "date": "2025-11-01",
+    "category": "Web Development",
+    "description": "Learn MongoDB, Express.js, React, and Node.js to build complete web applications.",
+    "image": "assets/web.jpg",
+    "durationWeeks": "6"
+  },
+  {
+    "id": 3,
+    "title": "AI for Software Engineers",
+    "date": "2025-12-05",
+    "category": "Artificial Intelligence",
+    "description": "Explore how to integrate AI and machine learning into modern software engineering projects.",
+    "image": "assets/ai.jpg",
+    "durationWeeks": "4"
+  }
+]

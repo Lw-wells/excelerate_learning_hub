@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'program_listing_screen.dart' hide Program;
 import 'program_details_screen.dart';
-import 'package:excelerate_app/models/programs.dart';
+// import 'package:excelerate_app/models/programzzz.dart';
 import 'explore_screen.dart';
 import 'profile_screen.dart';
+import 'package:excelerate_app/models/program_model.dart';
 
 //
 
@@ -90,9 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Web Development Bootcamp',
             description:
                 'A hands-on bootcamp to build full-stack web apps using HTML, CSS, JS, and MERN.',
-            durationWeeks: 12,
+            duration: '12',
             image: 'assets/web.jpg',
             category: '',
+            id: 0,
+            date: '',
           ),
         ),
         _buildProgramCard(
@@ -101,9 +104,11 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Mobile Development Bootcamp',
             description:
                 'Learn how to create cross-platform mobile apps with Flutter and Dart.',
-            durationWeeks: 10,
+            duration: '10',
             image: 'assets/mobile.jpg',
             category: '',
+            date: '',
+            id: 0,
           ),
         ),
         _buildProgramCard(
@@ -112,9 +117,11 @@ class _HomeScreenState extends State<HomeScreen> {
             title: 'Data Science Fundamentals',
             description:
                 'Explore Python, data visualization, and machine learning basics.',
-            durationWeeks: 8,
+            duration: '8',
             image: 'assets/datascience.jpg',
             category: '',
+            date: '',
+            id: 0,
           ),
         ),
         const SizedBox(height: 20),
@@ -251,6 +258,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+class sampleUser {}
 
 
 

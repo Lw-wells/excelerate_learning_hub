@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:excelerate_app/models/programs.dart';
+import 'package:excelerate_app/models/program_model.dart';
+import 'enrollment_form.dart';
 
 class ProgramDetailsScreen extends StatelessWidget {
   final Program program;
@@ -9,12 +10,16 @@ class ProgramDetailsScreen extends StatelessWidget {
     required this.program,
     required String title,
     required String date,
-    required String category,
     required String description,
+    required String category,
   });
 
   @override
   Widget build(BuildContext context) {
+    final isNetworkImage =
+        program.image.startsWith('http') || program.image.startsWith('https');
+
+    int _selectedIndex = 0;
     return Scaffold(
       appBar: AppBar(
         title: Text(program.title),
@@ -22,6 +27,7 @@ class ProgramDetailsScreen extends StatelessWidget {
         elevation: 0,
         foregroundColor: Colors.black,
       ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +38,9 @@ class ProgramDetailsScreen extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(program.image),
+                  image: isNetworkImage
+                      ? NetworkImage(program.image)
+                      : AssetImage(program.image) as ImageProvider,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -55,39 +63,41 @@ class ProgramDetailsScreen extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
 
-                  // --- Category and Duration ---
+                  // --- Category and Date ---
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.category_outlined,
-                        color: Colors.grey[600],
                         size: 18,
-                      ),
-                      const SizedBox(width: 6),
-                      Expanded(
-                        child: Text(
-                          program.description,
-                          style: TextStyle(color: Colors.grey[700]),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Icon(
-                        Icons.timer_outlined,
-                        color: Colors.grey[600],
-                        size: 18,
+                        color: Colors.grey,
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        '${program.durationWeeks} weeks',
-                        style: TextStyle(color: Colors.grey[700]),
+                        program.category,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      const Icon(
+                        Icons.date_range_outlined,
+                        size: 18,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        program.date,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
 
                   // --- About this Program ---
                   const Text(
@@ -100,6 +110,26 @@ class ProgramDetailsScreen extends StatelessWidget {
                     program.description,
                     style: const TextStyle(fontSize: 16, height: 1.5),
                   ),
+                  const SizedBox(height: 24),
+
+                  // --- Duration ---
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.timer_outlined,
+                        size: 18,
+                        color: Colors.grey,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        '${program.duration} weeks',
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 40),
 
                   // --- Register Button ---
@@ -108,12 +138,16 @@ class ProgramDetailsScreen extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Registered for ${program.title}!'),
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EnrollmentFormScreen(
+                              programTitle: program.title,
+                            ),
                           ),
                         );
                       },
+
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.brown[800],
                         foregroundColor: Colors.white,
@@ -157,7 +191,6 @@ class ProgramDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -167,23 +200,13 @@ class ProgramDetailsScreen extends StatelessWidget {
 
       // --- Bottom Navigation Bar ---
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         selectedItemColor: Colors.brown[800],
         unselectedItemColor: Colors.grey,
+        onTap: _onItemTapped,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_outlined),
-            label: 'Notifications',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Explore'),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: 'Profile',
@@ -194,30 +217,38 @@ class ProgramDetailsScreen extends StatelessWidget {
   }
 }
 
-//OLD CODE
-// import 'package:excelerate_app/screens/program_listing_screen.dart';
+void _onItemTapped(int index) {
+  // no-op for now; update to navigate or show state changes if this screen becomes StatefulWidget
+}
+
+
+
+
+
+
+
+
+
 // import 'package:flutter/material.dart';
+// import 'package:excelerate_app/models/programs.dart';
 
 // class ProgramDetailsScreen extends StatelessWidget {
-//   final String title;
-//   final String date;
-//   final String category;
-//   final String description;
+//   final Program program;
 
 //   const ProgramDetailsScreen({
 //     super.key,
-//     required this.title,
-//     required this.date,
-//     required this.category,
-//     required this.description,
-//     required Program program,
+//     required this.program,
+//     required String title,
+//     required String date,
+//     required String category,
+//     required String description,
 //   });
 
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //       appBar: AppBar(
-//         title: const Text('Program Details'),
+//         title: Text(program.title),
 //         backgroundColor: Colors.white,
 //         elevation: 0,
 //         foregroundColor: Colors.black,
@@ -226,15 +257,15 @@ class ProgramDetailsScreen extends StatelessWidget {
 //         child: Column(
 //           crossAxisAlignment: CrossAxisAlignment.start,
 //           children: <Widget>[
-//             // --- Placeholder Banner (replace with real image later) ---
+//             // --- Program Banner Image ---
 //             Container(
-//               height: 200,
+//               height: 220,
 //               width: double.infinity,
-//               color: const Color(0xFFE0E0E0),
-//               child: const Icon(
-//                 Icons.image_outlined,
-//                 size: 80,
-//                 color: Colors.grey,
+//               decoration: BoxDecoration(
+//                 image: DecorationImage(
+//                   image: NetworkImage(program.image),
+//                   fit: BoxFit.cover,
+//                 ),
 //               ),
 //             ),
 
@@ -249,24 +280,45 @@ class ProgramDetailsScreen extends StatelessWidget {
 //                 children: <Widget>[
 //                   // --- Program Title ---
 //                   Text(
-//                     title,
+//                     program.title,
 //                     style: const TextStyle(
-//                       fontSize: 22,
+//                       fontSize: 24,
 //                       fontWeight: FontWeight.bold,
 //                     ),
 //                   ),
 //                   const SizedBox(height: 8),
 
-//                   // --- Date & Category ---
-//                   Text(
-//                     '$date   •   $category',
-//                     style: TextStyle(
-//                       fontSize: 16,
-//                       color: Colors.grey[700],
-//                       fontWeight: FontWeight.w500,
-//                     ),
+//                   // --- Category and Duration ---
+//                   Row(
+//                     children: [
+//                       Icon(
+//                         Icons.category_outlined,
+//                         color: Colors.grey[600],
+//                         size: 18,
+//                       ),
+//                       const SizedBox(width: 6),
+//                       Expanded(
+//                         child: Text(
+//                           program.description,
+//                           style: TextStyle(color: Colors.grey[700]),
+//                           overflow: TextOverflow.ellipsis,
+//                           maxLines: 2,
+//                         ),
+//                       ),
+//                       const SizedBox(width: 10),
+//                       Icon(
+//                         Icons.timer_outlined,
+//                         color: Colors.grey[600],
+//                         size: 18,
+//                       ),
+//                       const SizedBox(width: 6),
+//                       Text(
+//                         '${program.durationWeeks} weeks',
+//                         style: TextStyle(color: Colors.grey[700]),
+//                       ),
+//                     ],
 //                   ),
-//                   const SizedBox(height: 24),
+//                   const SizedBox(height: 20),
 
 //                   // --- About this Program ---
 //                   const Text(
@@ -276,7 +328,7 @@ class ProgramDetailsScreen extends StatelessWidget {
 //                   const SizedBox(height: 8),
 
 //                   Text(
-//                     description,
+//                     program.description,
 //                     style: const TextStyle(fontSize: 16, height: 1.5),
 //                   ),
 //                   const SizedBox(height: 40),
@@ -288,8 +340,8 @@ class ProgramDetailsScreen extends StatelessWidget {
 //                     child: ElevatedButton(
 //                       onPressed: () {
 //                         ScaffoldMessenger.of(context).showSnackBar(
-//                           const SnackBar(
-//                             content: Text('Registered for Program!'),
+//                           SnackBar(
+//                             content: Text('Registered for ${program.title}!'),
 //                           ),
 //                         );
 //                       },
@@ -358,10 +410,7 @@ class ProgramDetailsScreen extends StatelessWidget {
 //             label: 'Home',
 //           ),
 //           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-//           BottomNavigationBarItem(
-//             icon: Icon(Icons.add_circle_outline),
-//             label: 'Add',
-//           ),
+
 //           BottomNavigationBarItem(
 //             icon: Icon(Icons.notifications_outlined),
 //             label: 'Notifications',
@@ -376,49 +425,4 @@ class ProgramDetailsScreen extends StatelessWidget {
 //   }
 // }
 
-//SET 0
-// import 'package:flutter/material.dart';
-// import '../models/programs.dart';
 
-// class ProgramDetailsScreen extends StatelessWidget {
-//   final Program program;
-
-//   const ProgramDetailsScreen({super.key, required this.program});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text(program.title)),
-//       body: SingleChildScrollView(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             ClipRRect(
-//               borderRadius: BorderRadius.circular(10),
-//               child: Image.network(program.imageUrl),
-//             ),
-//             const SizedBox(height: 20),
-//             Text(
-//               program.title,
-//               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-//             ),
-//             const SizedBox(height: 10),
-//             Text(
-//               program.description,
-//               style: const TextStyle(fontSize: 16, height: 1.5),
-//             ),
-//             const SizedBox(height: 20),
-//             Center(
-//               child: ElevatedButton.icon(
-//                 icon: const Icon(Icons.school),
-//                 label: const Text("Enroll Now"),
-//                 onPressed: () {},
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

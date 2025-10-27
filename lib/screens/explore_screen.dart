@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:excelerate_app/models/programs.dart';
+import 'package:excelerate_app/models/program_model.dart';
 import 'program_details_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -19,30 +19,38 @@ class _ExploreScreenState extends State<ExploreScreen> {
     Program(
       title: 'Full Stack Web Development',
       description: 'Build end-to-end web apps using MERN Stack.',
-      durationWeeks: 12,
+      duration: '12',
       image: 'assets/web.jpg',
       category: 'Web Dev',
+      date: '',
+      id: 0,
     ),
     Program(
       title: 'Flutter Mobile Development',
       description: 'Create cross-platform mobile apps using Dart & Flutter.',
-      durationWeeks: 10,
+      duration: '10',
       image: 'assets/mobile.jpg',
       category: 'Mobile',
+      date: '',
+      id: 0,
     ),
     Program(
       title: 'AI for Software Engineers',
       description: 'Learn machine learning concepts and apply them in code.',
-      durationWeeks: 8,
+      duration: '8',
       image: 'assets/ai.jpg',
       category: 'AI',
+      id: 0,
+      date: '',
     ),
     Program(
       title: 'Software Testing Bootcamp',
       description: 'Master automation, unit testing, and QA fundamentals.',
-      durationWeeks: 6,
+      duration: '6',
       image: 'assets/softwaretesting.jpg',
       category: 'Testing',
+      date: '',
+      id: 0,
     ),
   ];
 

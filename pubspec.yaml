@@ -57,6 +57,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/data/programs.json
     - assets/web.jpg
     - assets/mobile.jpg
     - assets/datascience.jpg
@@ -68,6 +69,7 @@ flutter:
     - assets/softwaretesting.jpg
     - assets/person1.jpg
     - assets/excelerate.jpeg
+    - assets/data/programs.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
