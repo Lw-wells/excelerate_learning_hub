@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // ✅ Firebase Auth import
+import 'package:google_sign_in/google_sign_in.dart'; // ✅ Google Sign-In import
 import 'package:excelerate_app/data/enrollment_data.dart';
 import '../models/enrollment.dart';
 
@@ -16,23 +18,33 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   Uint8List? _imageBytes;
   final ImagePicker _picker = ImagePicker();
-  String userName = "Pamwel Flora";
-  String userEmail = "flora@gmail.com";
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  String userName = "Guest User";
+  String userEmail = "guest@example.com";
+  String? userPhotoUrl;
 
   @override
   void initState() {
     super.initState();
+    _loadUserData();
     _loadSavedImage();
   }
 
-  // --- Reload screen when returning (to update enrolled programs)
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    setState(() {});
+  // --- Load user info from FirebaseAuth
+  void _loadUserData() {
+    final user = _auth.currentUser;
+    if (user != null) {
+      setState(() {
+        userName = user.displayName ?? "No Name";
+        userEmail = user.email ?? "No Email";
+        userPhotoUrl = user.photoURL;
+      });
+    }
   }
 
-  // --- Load image from local storage (using Base64 decoding)
+  // --- Load locally saved image (Base64 decoding)
   Future<void> _loadSavedImage() async {
     final prefs = await SharedPreferences.getInstance();
     final encoded = prefs.getString('profile_image');
@@ -43,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  // --- Save image locally (Base64 encoding)
+  // --- Save picked image locally
   Future<void> _saveImage(Uint8List bytes) async {
     final prefs = await SharedPreferences.getInstance();
     final encoded = base64Encode(bytes);
@@ -64,14 +76,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  // --- Logout (handles both Google and Firebase sign-out)
+  Future<void> _logout(BuildContext context) async {
+    try {
+      await _auth.signOut();
+      await _googleSignIn.signOut();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('You have been logged out.')),
+      );
+      Navigator.pushReplacementNamed(context, '/signIn');
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Logout failed: $e')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final enrolledPrograms =
         ModalRoute.of(context)?.settings.arguments as List<Enrollment>? ??
         <Enrollment>[];
-    final ImageProvider<Object> imageProvider = _imageBytes != null
-        ? MemoryImage(_imageBytes!)
-        : const AssetImage('assets/person1.jpg');
+
+    // --- Determine which profile image to show ---
+    ImageProvider<Object> imageProvider;
+    if (_imageBytes != null) {
+      imageProvider = MemoryImage(_imageBytes!);
+    } else if (userPhotoUrl != null) {
+      imageProvider = NetworkImage(userPhotoUrl!);
+    } else {
+      imageProvider = const AssetImage('assets/profile.png');
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -134,7 +169,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const SizedBox(height: 32),
 
-                  // --- Enrolled Programs Section ---
+                  // --- Enrolled Programs ---
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Align(
@@ -238,12 +273,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               width: double.infinity,
               height: 50,
               child: OutlinedButton(
-                onPressed: () {
-                  print('Logout button pressed');
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('You have been logged out.')),
-                  );
-                },
+                onPressed: () => _logout(context),
                 style: OutlinedButton.styleFrom(
                   foregroundColor: Colors.brown[800],
                   side: BorderSide(color: Colors.brown[800]!),

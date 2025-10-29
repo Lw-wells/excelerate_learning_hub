@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "277748821679",
+    "project_id": "excelerate-learninghub",
+    "storage_bucket": "excelerate-learninghub.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277748821679:android:e5857b5cb5ab9f5cb7ee5a",
+        "android_client_info": {
+          "package_name": "com.example.excelerate_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277748821679-n7bqs07jbtm6gjkpq59v9l5dksh2rbi6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.excelerate_app",
+            "certificate_hash": "a789e505c817a122ea906ea6eaa3d48b3a30ab18"
+          }
+        },
+        {
+          "client_id": "277748821679-35iv95j8af5uud8ssgqpuhbcvtfkndk8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrOAqv6LepAXvBeJeez6uE95WXAGThNcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277748821679-35iv95j8af5uud8ssgqpuhbcvtfkndk8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "277748821679-coead3q85i3uonkqcl7t2blqmqjcplik.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.excelerateApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

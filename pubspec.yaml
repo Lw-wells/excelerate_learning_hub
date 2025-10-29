@@ -28,6 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  firebase_core: ^3.5.0
+  cloud_firestore: ^5.4.0
+  firebase_auth: ^5.2.0
+  google_sign_in: ^6.2.1
   image_picker: ^1.1.2
   path: ^1.9.0
   flutter:
@@ -70,6 +74,8 @@ flutter:
     - assets/person1.jpg
     - assets/excelerate.jpeg
     - assets/data/programs.json
+    - assets/google.png
+    - assets/profile.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
