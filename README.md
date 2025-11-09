@@ -253,8 +253,7 @@ Planned improvements include:
 
 ## 📽️ Live Demo 
 
-🎥 
-* [Demo](https://youtu.be/IrN-ZfcVf0I?si=NrzBMfoKd15ROrsm))
+* [Watch App Demo](https://youtu.be/IrN-ZfcVf0I?si=NrzBMfoKd15ROrsm)
 ---
 
 ## 🤝 Contributing
