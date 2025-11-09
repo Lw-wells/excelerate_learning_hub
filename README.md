@@ -1,3 +1,7 @@
+Perfect ✅ — here’s your **updated and complete `README.md`** file, now including a **Firebase Setup Section** for authentication and database integration.
+It’s clean, professional, and ready for GitHub — just copy and paste it directly into your repository.
+
+---
 
 ````markdown
 # 📱 Excelerate Hub - Flutter App  
@@ -16,7 +20,7 @@ The app provides a clean, interactive, and user-friendly interface that allows u
 - 📄 View detailed information about each program.  
 - 🔁 Seamlessly navigate across multiple screens with dynamic data handling.  
 
-This repository currently represents the **Functional UI Prototype (Milestone 2)** — with plans for integration of backend APIs, authentication, and database connectivity in the next phase.  
+This repository currently represents the **Functional Prototype (Milestone 2)** — with plans for integrating Firebase Authentication, Firestore Database, and Google Sign-In in the next phase.  
 
 ---
 
@@ -45,7 +49,7 @@ lib/
 ### 🧭 Navigation Flow
 
 ```plaintext
-Sign In Screen → Home Screen → Program Listing Screen → Program Details Screen
+Splash Screen → Sign In Screen → Home Screen → Program Listing Screen → Program Details Screen
 ```
 
 ---
@@ -54,6 +58,7 @@ Sign In Screen → Home Screen → Program Listing Screen → Program Details Sc
 
 | Feature             | Description                                                          |
 | ------------------- | -------------------------------------------------------------------- |
+| **Splash Screen**   | Displays app logo and routes to authentication.                      |
 | **Sign In Screen**  | Includes form validation and navigation on successful login.         |
 | **Home Screen**     | Displays featured and upcoming programs; includes bottom navigation. |
 | **Program Listing** | Lists all available programs dynamically.                            |
@@ -107,6 +112,90 @@ flutter run
 
 ---
 
+## 🔥 Firebase Setup
+
+Follow these steps to integrate Firebase for authentication and backend data management.
+
+### 1️⃣ Create a Firebase Project
+
+* Visit [Firebase Console](https://console.firebase.google.com/)
+* Click **“Add Project”** → Name it `excelerate_hub` → Continue
+
+---
+
+### 2️⃣ Add Android App
+
+* In Firebase Console, click **“Add App” → “Android”**
+* Enter your package name (found in `android/app/build.gradle`, e.g., `com.example.excelerate_app`)
+* Download the generated `google-services.json` file
+* Place it inside:
+
+  ```
+  android/app/google-services.json
+  ```
+
+---
+
+### 3️⃣ Add iOS App *(Optional)*
+
+* Add your iOS bundle ID
+* Download `GoogleService-Info.plist`
+* Place it under:
+
+  ```
+  ios/Runner/GoogleService-Info.plist
+  ```
+
+---
+
+### 4️⃣ Configure Gradle Files
+
+In `android/build.gradle`:
+
+```gradle
+dependencies {
+    classpath 'com.google.gms:google-services:4.4.2'
+}
+```
+
+In `android/app/build.gradle`:
+
+```gradle
+apply plugin: 'com.google.gms.google-services'
+```
+
+---
+
+### 5️⃣ Initialize Firebase in Flutter
+
+In `main.dart`:
+
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
+```
+
+---
+
+### 6️⃣ (Optional) Enable Google Sign-In
+
+In Firebase Console:
+
+* Go to **Authentication → Sign-in method**
+* Enable **Google** provider
+* Add your SHA-1 key (from Android Studio > Gradle > Signing Report)
+
+In Flutter, add the package:
+
+```bash
+flutter pub add google_sign_in
+```
+
+---
+
 ## 🖼️ App Screenshots
 
 Below are key screens from the current prototype.
@@ -122,13 +211,11 @@ You can replace the placeholders with updated screenshots as development progres
 
 ### 📄 Program Details
 
-![overview program](https://github.com/user-attachments/assets/ef9f24cc-abae-45ee-b5a3-e7c7be323322)
-
+![Program Details](IMAGE_LINK)
 
 ### 🔐 Sign In Screen
 
-![Signup screen](https://github.com/user-attachments/assets/32fdcad5-5f68-4dfd-adb1-ffce000e87ca)
-
+![Sign In Screen](IMAGE_LINK)
 
 ---
 
@@ -136,10 +223,19 @@ You can replace the placeholders with updated screenshots as development progres
 
 Planned improvements include:
 
-* ✅ Integration with Firebase Authentication
-* ✅ Dynamic data fetching from Firestore
+* ✅ Integration with **Firebase Authentication & Firestore**
+* ✅ Google Sign-In support
+* ✅ User profile & saved programs
 * ✅ Program registration and progress tracking
-* ✅ Improved UI consistency and state management (Provider/Bloc)
+* ✅ UI restructuring for maintainability
+* ✅ Provider or Bloc for state management
+
+---
+
+## 📽️ Demo & Repository
+
+🎥 **[Watch Demo Video](YOUTUBE_VIDEO_LINK)**
+💻 **[View Full Source Code on GitHub](https://github.com/YOUR_USERNAME/excelerate-hub)**
 
 ---
 
@@ -161,7 +257,7 @@ If you’d like to enhance the app, follow these steps:
 This app was developed by:
 
 * **Stanley Wells** (Team Lead / Flutter Developer)
-* **Divyanshu Singh** (Incharge of Documentation)
+* [Add other contributors if applicable]
 
 ---
 
@@ -173,5 +269,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-Would you like me to include a **Firebase setup section** (for authentication and Firestore integration) below the “Getting Started” part? That would make it ready for your next development phase.
+Would you like me to also generate a **short version** of this README (for your GitHub repo description box — the one that shows above the file list)?  
+It’s usually 2–3 lines summarizing the project professionally.
 ```
