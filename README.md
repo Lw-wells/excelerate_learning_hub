@@ -79,23 +79,25 @@ Below are key screens from the current prototype:
 🏠 Home Screen
 
 
-![Home Screen]![dashboard](https://github.com/user-attachments/assets/e75764b8-1f34-4b5c-81f2-c62ec3071897)
+![dashboard](https://github.com/user-attachments/assets/e75764b8-1f34-4b5c-81f2-c62ec3071897)
 
 
-📚 Program Listing![programlisting](https://github.com/user-attachments/assets/a8bb7fe5-7871-4fc3-a8d7-d7cc6d38f331)
+📚 Program Listing!
+
+[programlisting](https://github.com/user-attachments/assets/a8bb7fe5-7871-4fc3-a8d7-d7cc6d38f331)
 
 
 
 📄 Program Details
 
 
-![Program Details]![overview program](https://github.com/user-attachments/assets/a9e495eb-45eb-42b7-8523-b1cd72d42a1c)
+![overview program](https://github.com/user-attachments/assets/a9e495eb-45eb-42b7-8523-b1cd72d42a1c)
 
 
 🔐 Sign In Screen
 
 
-![Sign In]![Signup screen](https://github.com/user-attachments/assets/428b4655-822d-415e-a959-c7cda6916445)
+![Signup screen](https://github.com/user-attachments/assets/428b4655-822d-415e-a959-c7cda6916445)
 
 
 🧠 Next Steps
