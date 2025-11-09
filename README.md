@@ -1,7 +1,4 @@
-Perfect ✅ — here’s your **updated and complete `README.md`** file, now including a **Firebase Setup Section** for authentication and database integration.
-It’s clean, professional, and ready for GitHub — just copy and paste it directly into your repository.
 
----
 
 ````markdown
 # 📱 Excelerate Hub - Flutter App  
@@ -20,7 +17,7 @@ The app provides a clean, interactive, and user-friendly interface that allows u
 - 📄 View detailed information about each program.  
 - 🔁 Seamlessly navigate across multiple screens with dynamic data handling.  
 
-This repository currently represents the **Functional Prototype (Milestone 2)** — with plans for integrating Firebase Authentication, Firestore Database, and Google Sign-In in the next phase.  
+This repository currently represents the **Functional Prototype** — having integrated Firebase Authentication & Firestore Database. 
 
 ---
 
@@ -37,6 +34,7 @@ lib/
 │   └── program.dart               # Program model definition
 │
 ├── screens/
+|   |-- splashscreen.dart
 │   ├── sign_in_screen.dart        # Login interface
 │   ├── home_screen.dart           # Landing page after login
 │   ├── program_listing_screen.dart # Displays list of programs
@@ -44,6 +42,20 @@ lib/
 │
 └── assets/
     └── profile.jpg                # Placeholder user image
+    |__ web.jpg
+    -   mobile.jpg
+    -   datascience.jpg
+    -   uxui.jpg
+    -   project.jpg
+    -   javascript.jpg
+    -   profile.jpg
+    -   ai.jpg
+    -   softwaretesting.jpg
+    -   person1.jpg
+    -   excelerate.jpeg
+    -   data/programs.json
+    -   google.png
+    -   profile.png
 ````
 
 ### 🧭 Navigation Flow
@@ -73,13 +85,13 @@ Follow these steps to **clone, install dependencies, and run** the project local
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/excelerate-hub.git
+git clone [https://github.com/YOUR_USERNAME/excelerate-hub.git](https://github.com/Lw-wells/excelerate_learning_hub.git)
 ```
 
 Or fork it first via GitHub UI, then clone your fork:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/excelerate-hub.git
+git clone [https://github.com/YOUR_USERNAME/excelerate-hub.git](https://github.com/Lw-wells/excelerate_learning_hub.git)
 ```
 
 ---
@@ -87,7 +99,7 @@ git clone https://github.com/YOUR_USERNAME/excelerate-hub.git
 ### 2️⃣ Navigate to the Project Directory
 
 ```bash
-cd excelerate-hub
+cd excelerate_learning_hub
 ```
 
 ---
@@ -119,7 +131,7 @@ Follow these steps to integrate Firebase for authentication and backend data man
 ### 1️⃣ Create a Firebase Project
 
 * Visit [Firebase Console](https://console.firebase.google.com/)
-* Click **“Add Project”** → Name it `excelerate_hub` → Continue
+* Click **“Add Project”** → Name it `excelerate_learning_hub` → Continue
 
 ---
 
@@ -201,6 +213,11 @@ flutter pub add google_sign_in
 Below are key screens from the current prototype.
 You can replace the placeholders with updated screenshots as development progresses.
 
+### SplashScreen
+
+![splashscreen](https://github.com/user-attachments/assets/1f0fd1e9-9835-415e-a314-7c0c2a87c593)
+
+
 ### 🏠 Home Screen
 
 ![Home Screen](https://github.com/user-attachments/assets/064458b7-3fd0-4aa4-a82e-3757fbec6c8e)
@@ -211,11 +228,13 @@ You can replace the placeholders with updated screenshots as development progres
 
 ### 📄 Program Details
 
-![Program Details](IMAGE_LINK)
+![overview program](https://github.com/user-attachments/assets/5567093d-8e88-4a47-969a-ed04bb69c125)
+
 
 ### 🔐 Sign In Screen
 
-![Sign In Screen](IMAGE_LINK)
+![Signup screen](https://github.com/user-attachments/assets/225c633a-bc72-4f75-8148-f23fe34dbb02)
+
 
 ---
 
@@ -234,8 +253,8 @@ Planned improvements include:
 
 ## 📽️ Demo & Repository
 
-🎥 **[Watch Demo Video](YOUTUBE_VIDEO_LINK)**
-💻 **[View Full Source Code on GitHub](https://github.com/YOUR_USERNAME/excelerate-hub)**
+🎥 **[Watch Demo Video]([YOUTUBE_VIDEO_LINK](https://youtu.be/IrN-ZfcVf0I?si=NrzBMfoKd15ROrsm))**
+💻 **[View Full Source Code on GitHub](https://github.com/Lw-wells/excelerate_learning_hub)**
 
 ---
 
@@ -257,7 +276,7 @@ If you’d like to enhance the app, follow these steps:
 This app was developed by:
 
 * **Stanley Wells** (Team Lead / Flutter Developer)
-* [Add other contributors if applicable]
+* **Divyanshu Singh** (Documentation)
 
 ---
 
@@ -267,8 +286,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ```
 
----
 
-Would you like me to also generate a **short version** of this README (for your GitHub repo description box — the one that shows above the file list)?  
-It’s usually 2–3 lines summarizing the project professionally.
-```
