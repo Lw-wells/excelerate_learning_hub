@@ -85,13 +85,13 @@ Follow these steps to **clone, install dependencies, and run** the project local
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/excelerate-hub.git](https://github.com/Lw-wells/excelerate_learning_hub.git)
+git clone (https://github.com/Lw-wells/excelerate_learning_hub.git)
 ```
 
 Or fork it first via GitHub UI, then clone your fork:
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/excelerate-hub.git](https://github.com/Lw-wells/excelerate_learning_hub.git)
+git clone (https://github.com/Lw-wells/excelerate_learning_hub.git)
 ```
 
 ---
@@ -251,11 +251,9 @@ Planned improvements include:
 
 ---
 
-## 📽️ Demo & Repository
+## 📽️ Live Demo 
 
 🎥 **[Watch Demo Video]([YOUTUBE_VIDEO_LINK](https://youtu.be/IrN-ZfcVf0I?si=NrzBMfoKd15ROrsm))**
-💻 **[View Full Source Code on GitHub](https://github.com/Lw-wells/excelerate_learning_hub)**
-
 ---
 
 ## 🤝 Contributing
@@ -283,7 +281,4 @@ This app was developed by:
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
-
-```
-
 
