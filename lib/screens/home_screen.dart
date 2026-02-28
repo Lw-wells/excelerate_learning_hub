@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
             duration: '12',
             image: 'assets/web.jpg',
             category: '',
-            id: 0,
+            id: '0',
             date: '',
           ),
         ),
@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
             image: 'assets/mobile.jpg',
             category: '',
             date: '',
-            id: 0,
+            id: '0',
           ),
         ),
         _buildProgramCard(
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
             image: 'assets/datascience.jpg',
             category: '',
             date: '',
-            id: 0,
+            id: '0',
           ),
         ),
         const SizedBox(height: 20),
@@ -242,10 +242,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(
                     builder: (context) => ProgramDetailsScreen(
                       program: program,
-                      title: '',
-                      date: '',
-                      category: '',
-                      description: '',
                     ),
                   ),
                 );

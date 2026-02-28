@@ -33,10 +33,6 @@ void main() async {
     );
   }
 
-  // ✅ Preload mock program data
-  final programs = await ProgramService().loadPrograms();
-  debugPrint('Loaded ${programs.length} programs from JSON!');
-
   runApp(const MyApp());
 }
 
@@ -82,10 +78,6 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(
             builder: (context) => ProgramDetailsScreen(
               program: program,
-              title: '',
-              date: '',
-              category: '',
-              description: '',
             ),
           );
         }

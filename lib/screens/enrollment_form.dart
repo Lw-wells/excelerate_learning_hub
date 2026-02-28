@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 
-// Simple Enrollment model (you can move this to models/enrollment.dart)
-class Enrollment {
-  final String name;
-  final String email;
-  final String experience;
-  final String feedback;
-  final String programTitle;
+import '../services/program_service.dart';
+import '../models/enrollment_model.dart';
 
-  Enrollment({
-    required this.name,
-    required this.email,
-    required this.experience,
-    required this.feedback,
-    required this.programTitle,
-  });
-}
+// Simple Enrollment model moved to models/enrollment_model.dart
 
 class EnrollmentFormScreen extends StatefulWidget {
   final String programTitle;
@@ -55,9 +43,7 @@ class _EnrollmentFormScreenState extends State<EnrollmentFormScreen> {
     setState(() => _isLoading = true);
 
     try {
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-
+      // Submit to Firestore
       final enrollment = Enrollment(
         name: _nameController.text.trim(),
         email: _emailController.text.trim(),
@@ -65,6 +51,8 @@ class _EnrollmentFormScreenState extends State<EnrollmentFormScreen> {
         feedback: _feedbackController.text.trim(),
         programTitle: widget.programTitle,
       );
+
+      await ProgramService().enrollUser(enrollment.toMap());
 
       // ✅ Send enrollment to parent or store locally
       widget.onEnroll?.call(enrollment);

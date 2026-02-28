@@ -8,10 +8,6 @@ class ProgramDetailsScreen extends StatelessWidget {
   const ProgramDetailsScreen({
     super.key,
     required this.program,
-    required String title,
-    required String date,
-    required String description,
-    required String category,
   });
 
   @override

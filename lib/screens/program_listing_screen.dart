@@ -61,40 +61,29 @@ class _ProgramListingScreenState extends State<ProgramListingScreen> {
 
             // --- Dynamic Program List ---
             Expanded(
-              child: FutureBuilder<List<Program>>(
-                future: _futurePrograms,
+              child: StreamBuilder<List<Program>>(
+                stream: ProgramService().listenToPrograms(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    // 🌀 Loading state
                     return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    // ⚠️ Error state
-                    return Center(
-                      child: Text(
-                        'Unable to load programs. Please try again later.',
-                        style: TextStyle(color: Colors.red[700], fontSize: 16),
-                        textAlign: TextAlign.center,
-                      ),
-                    );
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    // 📭 Empty state
+                  }
+
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return const Center(
                       child: Text(
-                        'No programs available at the moment.',
+                        'No programs available.',
                         style: TextStyle(fontSize: 16, color: Colors.black54),
                       ),
                     );
-                  } else {
-                    // ✅ Success: Display data
-                    final programs = snapshot.data!;
-                    return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: programs.length,
-                      itemBuilder: (context, index) {
-                        return ProgramCard(program: programs[index]);
-                      },
-                    );
                   }
+
+                  final programs = snapshot.data!;
+                  return ListView.builder(
+                    itemCount: programs.length,
+                    itemBuilder: (context, index) {
+                      return ProgramCard(program: programs[index]);
+                    },
+                  );
                 },
               ),
             ),

@@ -23,7 +23,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       image: 'assets/web.jpg',
       category: 'Web Dev',
       date: '',
-      id: 0,
+      id: '0',
     ),
     Program(
       title: 'Flutter Mobile Development',
@@ -32,7 +32,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       image: 'assets/mobile.jpg',
       category: 'Mobile',
       date: '',
-      id: 0,
+      id: '0',
     ),
     Program(
       title: 'AI for Software Engineers',
@@ -40,7 +40,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       duration: '8',
       image: 'assets/ai.jpg',
       category: 'AI',
-      id: 0,
+      id: '0',
       date: '',
     ),
     Program(
@@ -50,7 +50,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       image: 'assets/softwaretesting.jpg',
       category: 'Testing',
       date: '',
-      id: 0,
+      id: '0',
     ),
   ];
 
@@ -158,10 +158,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
                               MaterialPageRoute(
                                 builder: (context) => ProgramDetailsScreen(
                                   program: program,
-                                  title: '',
-                                  date: '',
-                                  category: '',
-                                  description: '',
                                 ),
                               ),
                             );

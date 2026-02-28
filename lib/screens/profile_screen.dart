@@ -5,8 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // ✅ Firebase Auth import
 import 'package:google_sign_in/google_sign_in.dart'; // ✅ Google Sign-In import
-import 'package:excelerate_app/data/enrollment_data.dart';
-import '../models/enrollment.dart';
+import '../models/enrollment_model.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key, required Type user});
