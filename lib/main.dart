@@ -18,7 +18,7 @@ void main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-        apiKey: "AIzaSyDrtnCCGW1scwq-P1aCita9GbgMZ3epdnM",
+        apiKey: const String.fromEnvironment('FIREBASE_API_KEY'),
         authDomain: "excelerate-learninghub.firebaseapp.com",
         projectId: "excelerate-learninghub",
         storageBucket: "excelerate-learninghub.firebasestorage.app",
